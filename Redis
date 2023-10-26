@@ -1,0 +1,48 @@
+//Khởi động Redis
+sudo service redis-server start
+//Kết nối với Redis
+redis-cli
+
+//Đặt một khóa "username" với giá trị "johnsmith"
+SET username johnsmith
+
+//Truy xuất giá trị của khóa "username"
+GET username
+
+//Thêm các mục vào danh sách "shopping_list"
+LPUSH shopping_list "apple"
+LPUSH shopping_list "banana"
+LPUSH shopping_list "carrot"
+
+//Lấy toàn bộ danh sách
+LRANGE shopping_list 0 -1
+
+//Thêm các mục vào tập hợp "colors"
+SADD colors "red"
+SADD colors "blue"
+SADD colors "green"
+
+//Lấy toàn bộ các mục trong tập hợp
+SMEMBERS colors
+
+//Đặt trường "age" với giá trị "30" trong bảng băm "user_profile"
+HSET user_profile age 30
+
+//Lấy giá trị của trường "age" 
+HGET user_profile age
+
+//Đặt thời gian hết hạn cho khóa "session_token" là 3600 giây (1 giờ)
+SET session_token mytoken EX 3600
+
+//Xuất bản một thông điệp đến kênh "notifications"
+PUBLISH notifications "New message arrived"
+
+//Đăng ký để lắng nghe thông điệp trên kênh "notifications"
+SUBSCRIBE notifications
+
+//Xóa khóa "username"
+DEL username
+
+//Xóa tất cả các khóa có tiền tố "shopping_"
+DEL shopping_*
+
