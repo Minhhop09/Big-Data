@@ -1,0 +1,31 @@
+import org.apache.spark.sql.SparkSession
+
+val spark = SparkSession.builder()
+
+.appName("SparkByExample")
+
+.master("local")
+
+.getOrCreate()
+
+ val rdd = sc.parallelize(List("Genrmany India USA","USA India Russia","India Brazil Canada China"))
+
+val wordsRdd = rdd.flatMap(_.split(" "))
+
+val pairRDD = wordsRdd.map(f=>(f,1))
+
+pairRDD.foreach(println)
+
+println("Sort by Key ==>")
+
+val sortRDD = pairRDD.sortByKey()
+
+sortRDD.foreach(println)
+
+pairRDD.distinct.foreach(println) 
+
+println("Reduce by Key ==>")
+
+val wordCount = pairRDD.reduceByKey((a,b)=>a+b)
+
+wordCount.foreach(println)
